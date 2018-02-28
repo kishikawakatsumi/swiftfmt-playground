@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <style type="text/css">
+      .ace_editor {
+        height: 800px;
+        padding: 0;
+        margin: 0;
+      }
+      .no-gutters {
+        margin-right: 0;
+        margin-left: 0;
+
+        > .col,
+        > [class*="col-"] {
+          padding-right: 0;
+          padding-left: 0;
+        }
+      }
+      .config {
+        height: 800px;
+        overflow-y: scroll;
+      }
+      /* Sticky footer styles */
+      html {
+        position: relative;
+        min-height: 100%;
+      }
+      body {
+        margin-bottom: 60px; /* Margin bottom by footer height */
+      }
+      .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 60px; /* Set the fixed height of the footer here */
+        line-height: 60px; /* Vertically center the text there */
+        background-color: #F7F7F7;
+      }
+    </style>
+    <script src="https://use.fontawesome.com/ab7ee5aca9.js"></script>
+
+    <title>Swiftfmt Playground</title>
+  </head>
+  <body style="background-color: #F7F7F7; color: #333333;">
+    <div class="container-fluid" style="padding-right: 0; padding-left: 0; padding-bottom: 15px;">
+      <div class="row no-gutters">
+        <div class="col-md-6 config">
+          <div class="p-3">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a href="#tab1" class="nav-link active" data-toggle="tab">Tabs and Indents</a>
+              </li>
+              <li class="nav-item">
+                <a href="#tab2" class="nav-link" data-toggle="tab">Spaces</a>
+              </li>
+              <li class="nav-item">
+                <a href="#tab3" class="nav-link" data-toggle="tab">Wrapping and Braces</a>
+              </li>
+              <li class="nav-item">
+                <a href="#tab4" class="nav-link" data-toggle="tab">Blank Lines</a>
+              </li>
+            </ul>
+            <form action='#' method='post'>
+              <div class="tab-content">
+                <div id="tab1" class="tab-pane active">
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="useTabCharacter">Use tab character</label>
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="usr">Tab size:</label>
+                    <input type="text" class="form-control" id="tabSize" value="4" style="width: 200px;">
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="pwd">Indent:</label>
+                    <input type="text" class="form-control" id="indent" value="4" style="width: 200px;">
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="keepIndentsOnEmptyLines">Keep indents on empty lines</label>
+                  </div>
+                </div>
+                <div id="tab2" class="tab-pane">
+                  <h5>Before Parentheses</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeFunctionDeclarationParentheses">Method/function declaration parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeFunctionCallParentheses">Method/function call parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeIfParentheses" checked>'if' parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeWhileParentheses" checked>'while' parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeSwitchParentheses" checked>'switch' parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeCatchParentheses" checked>'catch' parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeAttributeParentheses">Attribute parentheses</label>
+                  </div>
+
+                  <h5>Around operators</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundAssignmentOperators" checked>Assignment operators (=, +=, ...)</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundLogicalOperators" checked>Logical operators (&amp;&amp;, ||)</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundEqualityOperators" checked>Equality operator (==)</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundRelationalOperators" checked>Relational operators (&lt;, &gt;, &lt;=, &gt;=)</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundBitwiseOperators" checked>Bitwise operators (&amp;, |, ^)</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundAdditiveOperators" checked>Additive operators (+, -)</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundMultiplicativeOperators" checked>Multiplicative operators (*, /, %)</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundShiftOperators" checked>Shift operators (&lt;&lt;, &gt;&gt;)</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundRangeOperators">Range operators (..., ..&lt;)</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundClosureArrow" checked>Closure arrow (-&gt;)</label>
+                  </div>
+
+                  <h5>Before Left Brace</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeFunctionDeclarationLeftBrace" checked>Type declaration left brace</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeFunctionLeftBrace" checked>Method/function left brace</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeIfLeftBrace" checked>'if' left brace</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeElseLeftBrace" checked>'else' left brace</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeForLeftBrace" checked>'for' left brace</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeWhileLeftBrace" checked>'while' left brace</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeDoLeftBrace" checked>'do' left brace</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeSwitchLeftBrace" checked>'switch' left brace</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeCatchLeftBrace" checked>'catch' left brace</label>
+                  </div>
+
+                  <h5>Before Keywords</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeElseKeywords" checked>'else' keyword</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeWhileKeywords" checked>'while' keyword</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeCatchKeywords" checked>'catch' keyword</label>
+                  </div>
+
+                  <h5>Within</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinCodeBraces" checked>Code braces</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinBrackets">Brackets</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinArrayAndDictionaryLiteralBrackets">Array and dictionary literal brackets</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinGroupingParentheses">Grouping parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinFunctionDeclarationParentheses">Method/function declaration parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinEmptyFunctionDeclarationParentheses">Empty method/function declaration parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinFunctionCallParentheses">Method/function call parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinEmptyFunctionCallParentheses">Empty method/function call parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinIfParentheses">'if' parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinWhileParentheses">'while' parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinSwitchParentheses">'switch' parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinCatchParentheses">'catch' parentheses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceWithinAttributeParentheses">Attribute parentheses</label>
+                  </div>
+
+                  <h5>In Ternary Operator (?:)</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAfterQuestionMarkInTernaryOperator" checked>After '?'</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAfterColonInTernaryOperator" checked>Before ':'</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceBeforeColonInTernaryOperator" checked>After ':'</label>
+                  </div>
+
+                  <h5>Around colons</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsBeforeTypeAnnotations" checked>Before colon in type annotations</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsAfterTypeAnnotations" checked>After colon in type annotations</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsBeforeTypeInheritanceClauses">Before colon in type inheritance clauses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsAfterTypeInheritanceClauses" checked>After colon in type inheritance clauses</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsBeforeTypeInheritanceClausesInTypeArguments">Before colon in type inheritance clauses in type arguments</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsAfterTypeInheritanceClausesInTypeArguments" checked>After colon in type inheritance clauses in type arguments</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsBeforerDictionaryTypes">Before colon in dictionary types</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsAfterrDictionaryTypes" checked>After colon in dictionary types</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsBeforeDictionaryLiteralKeyValuePair">Before colon in dictionary literal 'key:value' pair</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsAfterDictionaryLiteralKeyValuePair" checked>After colon in dictionary literal 'key:value' pair</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsBeforeAttributeArguments">Before colon in attribute arguments</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsAfterAttributeArguments" checked>After colon in attribute arguments</label>
+                  </div>
+
+                  <h5>Within Type Arguments</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundCommaAfterWithinTypeArguments" checked>After comma</label>
+                  </div>
+                  <h5>Other</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundCommaBefore">Before comma</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundCommaAfter" checked>After comma</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsBeforeSemicolon">Before semicolon</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="spaceAroundColonsAfterSemicolon" checked>After semicolon</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="shouldRemoveSemicons" checked>Remove semicolon</label>
+                  </div>
+                </div>
+
+                <div id="tab3" class="tab-pane">
+                  <h5>Braces placement</h5>
+                  <h5>'if' statement</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="ifStatementElseOnNewLine">'else' on new line</label>
+                  </div>
+                  <h5>'guard' statement</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="guardStatementElseOnNewLine">'else' on new line</label>
+                  </div>
+                  <h5>'repeat' statement</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="repeatWhileStatementWhileOnNewLine">'while' on new line</label>
+                  </div>
+                  <h5>'switch' statement</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="indentCaseBranches">Indent 'case' branches</label>
+                  </div>
+                  <h5>'do' statement</h5>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" id="doStatementCatchOnNewLine">'catch' on new line</label>
+                  </div>
+                </div>
+                <div id="tab4" class="tab-pane">
+                  <h5>Keep Maximum Blank Lines</h5>
+                  <div class="form-group form-inline">
+                    <label for="pwd">In declarations:</label>
+                    <input type="text" class="form-control" id="keepMaximumBlankLinesInDeclarations" value="2" style="width: 200px;">
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="pwd">In code:</label>
+                    <input type="text" class="form-control" id="keepMaximumBlankLinesInCode" value="2" style="width: 200px;">
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="pwd">Before '}':</label>
+                    <input type="text" class="form-control" id="keepMaximumBlankLinesBeforeClosingBrace" value="2" style="width: 200px;">
+                  </div>
+                  <h5>Minimum Blank Lines</h5>
+                  <div class="form-group form-inline">
+                    <label for="pwd">Before imports:</label>
+                    <input type="text" class="form-control" id="minimumBlankLinesBeforeImports" value="1" style="width: 200px;">
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="pwd">After imports:</label>
+                    <input type="text" class="form-control" id="minimumBlankLinesAfterImports" value="1" style="width: 200px;">
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="pwd">Around type declarations:</label>
+                    <input type="text" class="form-control" id="minimumBlankLinesAroundTypeDeclarations" value="1" style="width: 200px;">
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="pwd">Around property in protocol:</label>
+                    <input type="text" class="form-control" id="minimumBlankLinesAroundPropertyInProtocol" value="0" style="width: 200px;">
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="pwd">Around property:</label>
+                    <input type="text" class="form-control" id="minimumBlankLinesAroundProperty" value="0" style="width: 200px;">
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="pwd">Around method/function in protocol:</label>
+                    <input type="text" class="form-control" id="minimumBlankLinesAroundFunctionInProtocol" value="0" style="width: 200px;">
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="pwd">Around method/function:</label>
+                    <input type="text" class="form-control" id="minimumBlankLinesAroundFunction" value="1" style="width: 200px;">
+                  </div>
+                  <div class="form-group form-inline">
+                    <label for="pwd">Before method/function body:</label>
+                    <input type="text" class="form-control" id="minimumBlankLinesBeforeFunctionBody" value="0" style="width: 200px;">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <pre id="editor">// swiftfmt playground
+
+import Foundation
+import SwiftSyntax
+
+public class Foo : NSObject {
+    public let x = [1, 3, 5, 7, 9, 11]
+
+    /// Description
+    ///
+    /// - Parameters:
+    ///   - a: param a
+    ///   - b: param b
+    /// - Returns: String value
+    func foo(a: Bool, x: Int, y: Int, z: Int) -> String {
+        do {
+            let contents = try String(contentsOfFile: "/usr/bin/swift")
+            if contents.isEmpty { print(contents) } else if contents.count > 10 {
+                /*
+                 Block
+                 Comment
+                 */
+                for char in contents {
+                    // Line Comment
+                    print(
+                        char
+                    )
+                    _ = contents.map({ (c) -> String in
+                        _ =
+                        String(c).map({ (c) -> String in
+                            return String(c)
+                        })
+                        return ""
+                    }).map {
+                        return $0
+                    }
+                }
+            } else {
+                switch x {
+                case 0:
+                    break
+                case 1:
+                    print(y)
+                    print(z)
+                default:
+                    break
+                }
+            }
+        } catch {
+            print(error)
+        }
+
+        return "bar"
+    }
+
+    private class Inner {
+        let x = 0
+    }
+}
+
+enum Fruit {
+    case banana
+}
+</pre>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="mx-auto">
+            <a href="https://github.com/kishikawakatsumi/swiftfmt-playground" style="color: #999999;"><i class="fa fa-github fa-2x"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="ace/ace.js"></script>
+    <script src="ace/ext-language_tools.js"></script>
+    <script type="text/javascript">
+      let config = {
+        "indentation" : {
+          "useTabCharacter" : false,
+          "tabSize" : 4,
+          "indent" : 4,
+          "continuationIndent" : 8,
+          "keepIndentsOnEmptyLines" : false,
+          "indentCaseBranches" : false
+        },
+        "shouldRemoveSemicons" : true,
+        "spaces" : {
+          "before" : {
+            "parentheses" : {
+              "functionDeclaration" : false,
+              "functionCall" : false,
+              "if" : true,
+              "while" : true,
+              "switch" : true,
+              "catch" : true,
+              "attribute" : false,
+            },
+            "leftBrace" : {
+              "typeDeclaration" : true,
+              "function" : true,
+              "if" : true,
+              "else" : true,
+              "for" : true,
+              "while" : true,
+              "do" : true,
+              "switch" : true,
+              "catch" : true
+            },
+            "keywords" : {
+              "else" : true,
+              "while" : true,
+              "catch" : true
+            }
+          },
+          "around" : {
+            "operators" : {
+              "assignmentOperators" : true,
+              "logicalOperators" : true,
+              "equalityOperators" : true,
+              "relationalOperators" : true,
+              "bitwiseOperators" : true,
+              "additiveOperators" : true,
+              "multiplicativeOperators" : true,
+              "shiftOperators" : true,
+              "rangeOperators" : false,
+              "closureArrow" : true
+            },
+            "colons" : {
+              "beforeTypeAnnotations" : false,
+              "afterTypeAnnotations" : true,
+              "beforeTypeInheritanceClauses" : true,
+              "afterTypeInheritanceClauses" : true,
+              "beforeTypeInheritanceClausesInTypeArguments" : false,
+              "afterTypeInheritanceClausesInTypeArguments" : true,
+              "beforeDictionaryTypes" : false,
+              "afterDictionaryTypes" : true,
+              "beforeDictionaryLiteralKeyValuePair" : false,
+              "afterDictionaryLiteralKeyValuePair" : true,
+              "beforeAttributeArguments" : false,
+              "afterAttributeArguments" : true
+            }
+          },
+          "within" : {
+            "codeBraces" : true,
+            "brackets" : false,
+            "arrayAndDictionaryLiteralBrackets" : false,
+            "groupingParentheses" : false,
+            "functionDeclarationParentheses" : false,
+            "emptyFunctionDeclarationParentheses" : false,
+            "functionCallParentheses" : false,
+            "emptyFunctionCallParentheses" : false,
+            "ifParentheses" : false,
+            "whileParentheses" : false,
+            "switchParentheses" : false,
+            "catchParentheses" : false,
+            "attributeParentheses" : false
+          },
+          "inTernaryOperator" : {
+            "afterQuestionMark" : true,
+            "afterColon" : true,
+            "beforeColon" : true
+          },
+          "comma" : {
+            "before" : false,
+            "after" : true,
+            "afterWithinTypeArguments" : true
+          },
+          "semicolon" : {
+            "before" : false,
+            "after" : true
+          }
+        },
+        "braces" : {
+          "placement" : {
+            "inTypeDeclarations" : 0,
+            "inFunctions" : 0,
+            "inOther" : 0
+          }
+        },
+        "wrapping" : {
+          "keepWhenReformatting" : {
+            "lineBreakes" : true,
+            "commentAtFirstColumn" : true,
+            "simpleBlocksAndTrailingClosuresInOneLine" : true,
+            "simpleClosureArgumentsInOneLine" : true,
+            "simpleFunctionsInOneLine" : true
+          },
+          "ifStatement" : {
+            "elseOnNewLine" : false
+          },
+          "guardStatement" : {
+            "elseOnNewLine" : false
+          },
+          "repeatWhileStatement" : {
+            "whileOnNewLine" : false
+          },
+          "doStatement" : {
+            "catchOnNewLine" : false
+          },
+          "modifierList" : {
+            "wrapAfterModifierList" : false
+          },
+          "alignment" : {
+            "baseClassAndAdoptedProtocolList" : {
+              "wrapping" : 0,
+              "alignWhenMultiline" : false
+            },
+            "functionDeclarationParameters" : {
+              "placeRightParenthesisOnNewLine" : false,
+              "wrapping" : 0,
+              "alignWhenMultiline" : true,
+              "newLineAfterLeftParenthesis" : false
+            },
+            "functionCallArguments" : {
+              "placeRightParenthesisOnNewLine" : false,
+              "wrapping" : 0,
+              "alignWhenMultiline" : true,
+              "newLineAfterLeftParenthesis" : false
+            },
+            "chainedMethodCalls" : {
+              "wrapping" : 0,
+              "alignWhenMultiline" : false
+            },
+            "closures" : {
+              "parametersOnNewLineWhenMultiline" : false
+            }
+          }
+        },
+        "blankLines" : {
+          "keepMaximumBlankLines" : {
+            "inDeclarations" : 2,
+            "inCode" : 2,
+            "beforeClosingBrace" : 2
+          },
+          "minimumBlankLines" : {
+            "beforeImports" : 1,
+            "afterImports" : 1,
+            "aroundTypeDeclarations" : 1,
+            "aroundPropertyInProtocol" : 0,
+            "aroundProperty" : 0,
+            "aroundFunctionInProtocol" : 0,
+            "aroundFunction" : 1,
+            "beforeFunctionBody" : 0
+          }
+        },
+        "hardWrapAt" : 120
+      }
+
+      ace.require("ace/ext/language_tools");
+      const editor = ace.edit("editor");
+      editor.setTheme("ace/theme/xcode");
+      editor.session.setMode("ace/mode/swift");
+      editor.$blockScrolling = Infinity
+      editor.setOptions({
+        useSoftTabs: true,
+        autoScrollEditorIntoView: true,
+        fontFamily: "menlo",
+        fontSize: "11pt",
+        showInvisibles: false,
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true,
+      });
+      editor.renderer.setOptions({
+        showFoldWidgets: false,
+        showPrintMargin: false,
+      });
+      const row = editor.session.getLength() - 1
+      const column = editor.session.getLine(row).length // or simply Infinity
+      editor.gotoLine(row + 1, column)
+      let timeout;
+      $("form").change(function(){
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+          update(editor)
+        }, 1000);
+      });
+
+      function update(editor) {
+        config.indentation.useTabCharacter = $("#useTabCharacter").prop("checked");
+        config.indentation.tabSize = Number($("#tabSize").val()) || 4;
+        config.indentation.indent = Number($("#indent").val()) || 4;
+        config.indentation.keepIndentsOnEmptyLines = $("#keepIndentsOnEmptyLines").prop("checked");
+        config.indentation.indentCaseBranches = $("#indentCaseBranches").prop("checked");
+
+        config.spaces.before.parentheses.functionDeclaration = $("#spaceBeforeFunctionDeclarationParentheses").prop("checked");
+        config.spaces.before.parentheses.functionCall = $("#spaceBeforeFunctionCallParentheses").prop("checked");
+        config.spaces.before.parentheses.if = $("#spaceBeforeIfParentheses").prop("checked");
+        config.spaces.before.parentheses.while = $("#spaceBeforeWhileParentheses").prop("checked");
+        config.spaces.before.parentheses.switch = $("#spaceBeforeSwitchParentheses").prop("checked");
+        config.spaces.before.parentheses.catch = $("#spaceBeforeCatchParentheses").prop("checked");
+        config.spaces.before.parentheses.attribute = $("#spaceBeforeAttributeParentheses").prop("checked");
+
+        config.spaces.before.leftBrace.typeDeclaration = $("#spaceBeforeFunctionDeclarationLeftBrace").prop("checked");
+        config.spaces.before.leftBrace.function = $("#spaceBeforeFunctionLeftBrace").prop("checked");
+        config.spaces.before.leftBrace.if = $("#spaceBeforeIfLeftBrace").prop("checked");
+        config.spaces.before.leftBrace.else = $("#spaceBeforeElseLeftBrace").prop("checked");
+        config.spaces.before.leftBrace.for = $("#spaceBeforeForLeftBrace").prop("checked");
+        config.spaces.before.leftBrace.while = $("#spaceBeforeWhileLeftBrace").prop("checked");
+        config.spaces.before.leftBrace.do = $("#spaceBeforeDoLeftBrace").prop("checked");
+        config.spaces.before.leftBrace.switch = $("#spaceBeforeSwitchLeftBrace").prop("checked");
+        config.spaces.before.leftBrace.catch = $("#spaceBeforeCatchLeftBrace").prop("checked");
+
+        config.spaces.before.keywords.else = $("#spaceBeforeElseKeywords").prop("checked");
+        config.spaces.before.keywords.while = $("#spaceBeforeWhileKeywords").prop("checked");
+        config.spaces.before.keywords.catch = $("#spaceBeforeCatchKeywords").prop("checked");
+
+        config.spaces.around.operators.assignmentOperators = $("#spaceAroundAssignmentOperators").prop("checked");
+        config.spaces.around.operators.logicalOperators = $("#spaceAroundLogicalOperators").prop("checked");
+        config.spaces.around.operators.equalityOperators = $("#spaceAroundEqualityOperators").prop("checked");
+        config.spaces.around.operators.relationalOperators = $("#spaceAroundRelationalOperators").prop("checked");
+        config.spaces.around.operators.bitwiseOperators = $("#spaceAroundBitwiseOperators").prop("checked");
+        config.spaces.around.operators.additiveOperators = $("#spaceAroundAdditiveOperators").prop("checked");
+        config.spaces.around.operators.multiplicativeOperators = $("#spaceAroundMultiplicativeOperators").prop("checked");
+        config.spaces.around.operators.shiftOperators = $("#spaceAroundShiftOperators").prop("checked");
+        config.spaces.around.operators.rangeOperators = $("#spaceAroundRangeOperators").prop("checked");
+        config.spaces.around.operators.closureArrow = $("#spaceAroundClosureArrow").prop("checked");
+
+        config.spaces.around.colons.beforeTypeAnnotations = $("#spaceAroundColonsBeforeTypeAnnotations").prop("checked");
+        config.spaces.around.colons.afterTypeAnnotations = $("#spaceAroundColonsAfterTypeAnnotations").prop("checked");
+        config.spaces.around.colons.beforeTypeInheritanceClauses = $("#spaceAroundColonsBeforeTypeInheritanceClauses").prop("checked");
+        config.spaces.around.colons.afterTypeInheritanceClauses = $("#spaceAroundColonsAfterTypeInheritanceClauses").prop("checked");
+        config.spaces.around.colons.beforeTypeInheritanceClausesInTypeArguments = $("#spaceAroundColonsBeforeTypeInheritanceClausesInTypeArguments").prop("checked");
+        config.spaces.around.colons.afterTypeInheritanceClausesInTypeArguments = $("#spaceAroundColonsAfterTypeInheritanceClausesInTypeArguments").prop("checked");
+        config.spaces.around.colons.beforeDictionaryTypes = $("#spaceAroundColonsBeforerDictionaryTypes").prop("checked");
+        config.spaces.around.colons.afterDictionaryTypes = $("#spaceAroundColonsAfterrDictionaryTypes").prop("checked");
+        config.spaces.around.colons.beforeDictionaryLiteralKeyValuePair = $("#spaceAroundColonsBeforeDictionaryLiteralKeyValuePair").prop("checked");
+        config.spaces.around.colons.afterDictionaryLiteralKeyValuePair = $("#spaceAroundColonsAfterDictionaryLiteralKeyValuePair").prop("checked");
+        config.spaces.around.colons.beforeAttributeArguments = $("#spaceAroundColonsBeforeAttributeArguments").prop("checked");
+        config.spaces.around.colons.afterAttributeArguments = $("#spaceAroundColonsAfterAttributeArguments").prop("checked");
+
+        config.spaces.comma.before = $("#spaceAroundCommaBefore").prop("checked");
+        config.spaces.comma.after = $("#spaceAroundCommaAfter").prop("checked");
+        config.spaces.comma.afterWithinTypeArguments = $("#spaceAroundCommaAfterWithinTypeArguments").prop("checked");
+
+        config.spaces.semicolon.before = $("#spaceAroundColonsBeforeSemicolon").prop("checked");
+        config.spaces.semicolon.after = $("#spaceAroundColonsAfterSemicolon").prop("checked");
+        config.shouldRemoveSemicons = $("#shouldRemoveSemicons").prop("checked");
+
+        config.spaces.within.codeBraces = $("#spaceWithinCodeBraces").prop("checked");
+        config.spaces.within.brackets = $("#spaceWithinBrackets").prop("checked");
+        config.spaces.within.arrayAndDictionaryLiteralBrackets = $("#spaceWithinArrayAndDictionaryLiteralBrackets").prop("checked");
+        config.spaces.within.groupingParentheses = $("#spaceWithinGroupingParentheses").prop("checked");
+        config.spaces.within.functionDeclarationParentheses = $("#spaceWithinFunctionDeclarationParentheses").prop("checked");
+        config.spaces.within.emptyFunctionDeclarationParentheses = $("#spaceWithinEmptyFunctionDeclarationParentheses").prop("checked");
+        config.spaces.within.functionCallParentheses = $("#spaceWithinFunctionCallParentheses").prop("checked");
+        config.spaces.within.emptyFunctionCallParentheses = $("#spaceWithinEmptyFunctionCallParentheses").prop("checked");
+        config.spaces.within.ifParentheses = $("#spaceWithinIfParentheses").prop("checked");
+        config.spaces.within.whileParentheses = $("#spaceWithinWhileParentheses").prop("checked");
+        config.spaces.within.switchParentheses = $("#spaceWithinSwitchParentheses").prop("checked");
+        config.spaces.within.catchParentheses = $("#spaceWithinCatchParentheses").prop("checked");
+        config.spaces.within.attributeParentheses = $("#spaceWithinAttributeParentheses").prop("checked");
+
+        config.spaces.inTernaryOperator.afterQuestionMark = $("#spaceAfterQuestionMarkInTernaryOperator").prop("checked");
+        config.spaces.inTernaryOperator.afterColon = $("#spaceAfterColonInTernaryOperator").prop("checked");
+        config.spaces.inTernaryOperator.beforeColon = $("#spaceBeforeColonInTernaryOperator").prop("checked");
+
+        config.wrapping.ifStatement.elseOnNewLine = $("#ifStatementElseOnNewLine").prop("checked");
+        config.wrapping.guardStatement.elseOnNewLine = $("#guardStatementElseOnNewLine").prop("checked");
+        config.wrapping.repeatWhileStatement.whileOnNewLine = $("#repeatWhileStatementWhileOnNewLine").prop("checked");
+        config.wrapping.doStatement.catchOnNewLine = $("#doStatementCatchOnNewLine").prop("checked");
+
+        config.blankLines.keepMaximumBlankLines.inDeclarations = Number($("#keepMaximumBlankLinesInDeclarations").val()) || 2;
+        config.blankLines.keepMaximumBlankLines.inCode = Number($("#keepMaximumBlankLinesInCode").val()) || 2;
+        config.blankLines.keepMaximumBlankLines.beforeClosingBrace = Number($("#keepMaximumBlankLinesBeforeClosingBrace").val()) || 2;
+
+        config.blankLines.minimumBlankLines.beforeImports = Number($("#minimumBlankLinesBeforeImports").val()) || 1;
+        config.blankLines.minimumBlankLines.afterImports = Number($("#minimumBlankLinesAfterImports").val()) || 1;
+        config.blankLines.minimumBlankLines.aroundTypeDeclarations = Number($("#minimumBlankLinesAroundTypeDeclarations").val()) || 1;
+        config.blankLines.minimumBlankLines.aroundPropertyInProtocol = Number($("#minimumBlankLinesAroundPropertyInProtocol").val()) || 0;
+        config.blankLines.minimumBlankLines.aroundProperty = Number($("#minimumBlankLinesAroundProperty").val()) || 0;
+        config.blankLines.minimumBlankLines.aroundFunctionInProtocol = Number($("#minimumBlankLinesAroundFunctionInProtocol").val()) || 0;
+        config.blankLines.minimumBlankLines.aroundFunction = Number($("#minimumBlankLinesAroundFunction").val()) || 1;
+        config.blankLines.minimumBlankLines.beforeFunctionBody = Number($("#minimumBlankLinesBeforeFunctionBody").val()) || 0;
+
+        const code = editor.getSession().getValue();
+        const json = {
+          code: code,
+          configuration: JSON.stringify(config)
+        };
+        $.post('/update', json, function(data, error, xhr) {
+          editor.setValue(data.output);
+          editor.clearSelection();
+          editor.focus();
+        });
+      }
+    </script>
+  </body>
+</html>
